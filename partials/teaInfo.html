@@ -1,0 +1,31 @@
+<div>
+  <table>
+    <thead>
+      <th>
+        Tea
+      </th>
+      <th>
+        Information
+        <label for="sortDropdown" class="pull-right">Sort by Price</label>
+        <select name="sortDropdown" id="sortDropdown" ng-model="priceSort" class="pull-right">
+          <option value="desc">
+            Highest
+          </option>
+          <option value="asc">
+            Lowest
+          </option>
+        </select>
+      </th>
+    </thead>
+    <tbody ng-repeat="tea in teas | filter:search:strict">
+      <tr>
+        <td>
+          <tea-img tea="tea"></tea-img>
+        </td>
+        <td>
+          <indiv-tea tea="tea"></indiv-tea>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

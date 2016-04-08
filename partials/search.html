@@ -1,0 +1,12 @@
+<div>
+  <label for="searchDropdown">Search by Category</label>
+  <select name="searchDropdown" ng-model="search.categories">
+    <!-- Category in categories -->
+    <option ng-repeat="category in categories" value="{{ category }}">
+      {{ category }}
+    </option>
+  </select>
+  <label for="searchBox">Search by Name</label>
+  <input type="text" name="search" ng-model="search.name"/>
+  <button class="pull-right btn btn-danger" type="submit">Checkout | (empty)</button>
+</div>
