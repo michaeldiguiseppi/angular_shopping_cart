@@ -1,5 +1,5 @@
 <div>
-  <table>
+  <table class="table">
     <thead>
       <th>
         Tea
@@ -8,16 +8,13 @@
         Information
         <label for="sortDropdown" class="pull-right">Sort by Price</label>
         <select name="sortDropdown" id="sortDropdown" ng-model="priceSort" class="pull-right">
-          <option value="desc">
-            Highest
-          </option>
-          <option value="asc">
-            Lowest
+          <option ng-repeat="(key, value) in {'Highest': '-price', 'Lowest':'price'}" value={{value}}>
+            {{key}}
           </option>
         </select>
       </th>
     </thead>
-    <tbody ng-repeat="tea in teas | filter:search:strict">
+    <tbody ng-repeat="tea in teas | filter:search:strict | orderBy:priceSort">
       <tr>
         <td>
           <tea-img tea="tea"></tea-img>

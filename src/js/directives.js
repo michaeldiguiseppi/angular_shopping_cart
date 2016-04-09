@@ -4,6 +4,9 @@ app.directive('teaInfo', ['meanTeaData', function(meanTeaData) {
     templateUrl: 'partials/teaInfo.html',
     controller: function($scope) {
       $scope.teas = meanTeaData;
+      $scope.logIt = function(value) {
+        console.log(value);
+      };
     },
   };
 }]);
