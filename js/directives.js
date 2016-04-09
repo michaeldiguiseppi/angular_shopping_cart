@@ -11,12 +11,16 @@ app.directive('teaInfo', ['meanTeaData', function(meanTeaData) {
   };
 }]);
 
-app.directive('indivTea', function() {
+app.directive('indivTea', ['shoppingCart', function(shoppingCart) {
   return {
     scope: { tea: '=' },
     templateUrl: 'partials/indivTea.html',
+    controller: function($scope) {
+      $scope.cart = shoppingCart;
+      $scope.quantity = 1;
+    }
   };
-});
+}]);
 
 app.directive('teaImg', function() {
   return {
@@ -31,11 +35,22 @@ app.directive('navDir', function() {
   };
 });
 
-app.directive('searchDir', ['getCategories', function(getCategories) {
+app.directive('searchDir', ['getCategories', 'shoppingCart', function(getCategories, shoppingCart) {
   return {
     templateUrl: 'partials/search.html',
     controller: function($scope) {
       $scope.categories = getCategories.getEm();
+      console.log(shoppingCart);
+      $scope.showCheckout = false;
+    }
+  };
+}]);
+
+app.directive('checkOut', ['shoppingCart', function(shoppingCart) {
+  return {
+    templateUrl: 'partials/teaCheckout.html',
+    controller: function($scope) {
+      $scope.cart = shoppingCart;
     }
   };
 }]);

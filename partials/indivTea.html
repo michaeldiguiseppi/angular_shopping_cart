@@ -3,7 +3,7 @@
     <span class="pull-right">
       <label for="quantity" class="form-control-label">Quantity</label>
       <select ng-model="quantity" name="quantity">
-        <option ng-repeat="num in [2,3,4,5,6,7,8,9]" value="num">
+        <option ng-repeat="num in [2,3,4,5,6,7,8,9]" value={{num}}>
           {{ num }}
         </option>
       </select>
@@ -11,7 +11,7 @@
   </h2>
   <div class="row">
     <div class="col-lg-2 col-lg-offset-10">
-      <button class="btn btn-sm btn-warning">Add To Bag</button>
+      <button class="btn btn-sm btn-warning" ng-click="cart.addItems(tea, quantity)">Add To Bag</button>
     </div>
   </div>
   <p><strong>Price</strong>: {{ tea.price | centsToDollars | currency }}</p>
