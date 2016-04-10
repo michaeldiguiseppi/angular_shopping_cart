@@ -1,7 +1,7 @@
 <div>
   <div>
-    <h2>My Shopping Bag <span class="pull-right">Order Total: {{ 0 | currency }}</span></h2>
-    <table class="table table-bordered">
+    <h2>My Shopping Bag <span class="pull-right">Order Total: {{ cart.totals.price | centsToDollars | currency }}</span></h2>
+    <table class="table table-bordered checkout">
       <thead>
         <th>
           Product
@@ -13,22 +13,30 @@
           Sub-total
         </th>
       </thead>
-      <tbody ng-repeat="tea in cart.items | orderBy:'quantity'">
+      <tbody ng-repeat="tea in cart.items">
         <tr>
           <td>
-            <p>
-              {{ tea.item.name }}
-            </p>
+            <h3>{{ tea.item.name }}</h3>
+            <img ng-src="{{tea.item.imageUrl}}" />
+            <br />
+            <ul class="none">
+              <li><strong>Caffeine Scale</strong>: {{ tea.item.caffeineScale }}</li>
+              <li><strong>Ingredients</strong>: {{ tea.item.ingredients }}</li>
+              <li><strong>Rating</strong>: {{ tea.item.rating }}</li>
+            </ul>
           </td>
           <td>
-            {{ tea.quantity }}
+            <span ng-show="cart.editQuantity">
+              <input type="number" class="form-control" placeholder="New Quantity" ng-model="tea.quantity" />
+            </span>
+            <span ng-hide="cart.editQuantity">{{ tea.quantity }}</span>
           </td>
           <td>
-            {{ tea.item.price * tea.quantity | centsToDollars | currency }}
+            <strong>{{ tea.item.price * tea.quantity | centsToDollars | currency }}</strong>
           </td>
           <td>
-            <button class="btn btn-warning">Edit</button>
-            <button class="btn btn-danger">Remove</button>
+            <button class="btn btn-warning" ng-click="cart.editQuantity = !cart.editQuantity"><span ng-show="cart.editQuantity">Save</span><span ng-hide="cart.editQuantity" ng-click="cart.editItems(tea)">Edit</span></button>
+            <button class="btn btn-danger" ng-click="cart.removeItem(tea)">Remove</button>
           </td>
         </tr>
       </tbody>
