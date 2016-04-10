@@ -148,32 +148,32 @@ app.service('shoppingCart', function() {
   var cart = {};
   cart.items = [];
   cart.editQuantity = false;
-  cart.totals = {};
+  cart.totals = {
+    price: 0
+  };
   cart.addItems = function(items, quantity) {
     cart.items.push({
       item: items,
       quantity: parseInt(quantity),
     });
     cart.calculateTotals();
-    // cart.totals.price += parseFloat(items.price) * parseInt(quantity);
   };
   cart.removeItem = function(item) {
     cart.items.splice(cart.items.indexOf(item), 1);
     cart.calculateTotals();
-    // cart.totals.price -= parseFloat(item.item.price) * parseInt(item.quantity);
-  };
-  cart.editItems = function(item, quantity) {
-    var index = cart.items.indexOf(item);
-    cart.items[index].item.quantity = quantity;
-    cart.calculateTotals();
   };
   cart.calculateTotals = function() {
+    cart.totals.price = 0;
     cart.items.forEach(function(item) {
-      console.log(item);
-      console.log('total: ', item.item.price * item.quantity);
-      cart.totals.price = item.item.price * item.quantity;
+      cart.totals.price += item.item.price * item.quantity;
     });
-    console.log(cart.totals);
+  };
+  cart.editItem = function(item) {
+    if (item.quantity === 0) {
+      cart.removeItem(item);
+    } else {
+      cart.calculateTotals();
+    }
   };
   return cart;
 });
