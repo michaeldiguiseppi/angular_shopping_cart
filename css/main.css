@@ -1,6 +1,19 @@
 /* add custom styles */
 table {
   width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  padding-left: 0;
+}
+
+.smaller-font {
+  font-size: 18px;
+}
+
+.narrow {
+  margin: 0px -50px;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -13,4 +26,16 @@ table.main th:first-child {
 
 table.main th:last-child {
   width: 75%;
+}
+
+table.checkout th:first-child {
+  width: 65%;
+}
+
+check-out th:nth-of-type(2) {
+  width: 10%;
+}
+
+.none {
+  list-style-type: none;
 }
