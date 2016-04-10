@@ -31,7 +31,10 @@ app.directive('teaImg', function() {
 
 app.directive('navDir', function() {
   return {
-    templateUrl: 'partials/nav.html'
+    templateUrl: 'partials/nav.html',
+    controller: function($scope) {
+      $scope.showCheckout = false;
+    },
   };
 });
 
@@ -40,7 +43,6 @@ app.directive('searchDir', ['getCategories', 'shoppingCart', function(getCategor
     templateUrl: 'partials/search.html',
     controller: function($scope) {
       $scope.categories = getCategories.getEm();
-      console.log(shoppingCart);
       $scope.showCheckout = false;
       $scope.cart = shoppingCart;
     }
