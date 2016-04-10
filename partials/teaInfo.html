@@ -6,12 +6,14 @@
       </th>
       <th>
         Information
-        <label for="sortDropdown" class="pull-right">Sort by Price</label>
-        <select name="sortDropdown" id="sortDropdown" ng-model="priceSort" class="pull-right">
-          <option ng-repeat="(key, value) in {'Highest': '-price', 'Lowest':'price'}" value={{value}}>
-            {{key}}
-          </option>
-        </select>
+        <span class="pull-right">
+          <label for="sortDropdown">Sort by Price</label>
+          <select name="sortDropdown" id="sortDropdown" ng-model="priceSort">
+            <option ng-repeat="(key, value) in {'Highest': '-price', 'Lowest':'price'}" value={{value}}>
+              {{key}}
+            </option>
+          </select>
+        </span>
       </th>
     </thead>
     <tbody ng-repeat="tea in teas | filter:search:strict | orderBy:priceSort">
