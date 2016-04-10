@@ -42,6 +42,7 @@ app.directive('searchDir', ['getCategories', 'shoppingCart', function(getCategor
       $scope.categories = getCategories.getEm();
       console.log(shoppingCart);
       $scope.showCheckout = false;
+      $scope.cart = shoppingCart;
     }
   };
 }]);
