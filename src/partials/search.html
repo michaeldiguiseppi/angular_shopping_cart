@@ -1,12 +1,24 @@
 <div>
-  <label for="searchDropdown">Search by Category</label>
-  <select name="searchDropdown" ng-model="search.categories">
-    <!-- Category in categories -->
-    <option ng-repeat="category in categories" value="{{ category }}">
-      {{ category }}
-    </option>
-  </select>
-  <label for="searchBox">Search by Name</label>
-  <input type="text" name="search" ng-model="search.name"/>
-  <button class="pull-right btn btn-danger" ng-click="showCheckout = !showCheckout" type="submit">Checkout | (empty)</button>
+  <div class="row">
+    <div class="col-lg-2">
+      <label for="searchDropdown" class="form-control-label">Search by Category</label>
+    </div>
+    <div class="col-lg-2">
+      <select name="searchDropdown" ng-model="search.categories" class="form-control narrow">
+        <option value="" selected>
+          Search by Category
+        </option>
+        <option ng-repeat="category in categories" value="{{ category }}">
+          {{ category }}
+        </option>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <label for="searchBox" class="form-control-label">Search by Name</label>
+    </div>
+    <div class="col-lg-2">
+      <input type="text" name="search" ng-model="search.name" class="form-control narrow"/>
+    </div>
+    <button class="pull-right btn btn-danger" ng-click="showCheckout = !showCheckout" type="submit">Checkout | Bag: <span ng-hide="cart.items.length">(empty)</span><span ng-show="cart.items.length">({{ cart.items.length }})</span></button>
+  </div>
 </div>
