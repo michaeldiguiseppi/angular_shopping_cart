@@ -147,17 +147,33 @@ app.service('getCategories', ['meanTeaData', function(meanTeaData) {
 app.service('shoppingCart', function() {
   var cart = {};
   cart.items = [];
+  cart.editQuantity = false;
+  cart.totals = {};
   cart.addItems = function(items, quantity) {
     cart.items.push({
       item: items,
       quantity: parseInt(quantity),
     });
-    console.log(cart.items);
+    cart.calculateTotals();
+    // cart.totals.price += parseFloat(items.price) * parseInt(quantity);
   };
   cart.removeItem = function(item) {
-    console.log('Before: ', cart.items);
-    cart.items.slice(cart.items[item], 1);
-    console.log('After: ', cart.items);
+    cart.items.splice(cart.items.indexOf(item), 1);
+    cart.calculateTotals();
+    // cart.totals.price -= parseFloat(item.item.price) * parseInt(item.quantity);
+  };
+  cart.editItems = function(item, quantity) {
+    var index = cart.items.indexOf(item);
+    cart.items[index].item.quantity = quantity;
+    cart.calculateTotals();
+  };
+  cart.calculateTotals = function() {
+    cart.items.forEach(function(item) {
+      console.log(item);
+      console.log('total: ', item.item.price * item.quantity);
+      cart.totals.price = item.item.price * item.quantity;
+    });
+    console.log(cart.totals);
   };
   return cart;
 });
